@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav-bar">
+                <img src="./images/logo.png" alt="site-logo">
+                <div>
+                    <a id="logInLink" href="./pages/login.html">Log In</a>
+                    <a id="signUpLink" href="./pages/signup.html">Sign Up</a>
+                    <a id="logOutLink" style="display: none;" href="./pages/signup.html">Log Out</a>
+                    <a id="dashboardLink" style="display: none;" href="http://127.0.0.1:5500/pages/dashboard.html?page=create">Dashboard</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero-section">
+            <div class="main-image"></div>
+        </section>
+        <section class="articles-section">
+            <div class="container">
+                <h2 class="articles-title">All articles</h2>
+                <div class="swiper-all-wrapper">
+                    <div class="swiper mySwiper">
+                        <div id="articles-wrapper" class="swiper-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+      observer: true, 
+      observeParents: true,
+      slidesPerView: 4,
+      spaceBetween: 30,
+      freeMode: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      autoplay: {
+        delay:1000
+      }
+    });
+    </script>
+</body>
+</html>

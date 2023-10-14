@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <div class="auth-main-wrapper">
+        <form id="sign-up-form" class="auth-wrapper">
+            <img src="../images/minilogo.png" alt="">
+            <h3>Sign Up</h3>
+            <input id="username" placeholder="Firstname" type="text">
+            <p style="display:none" class="status-username"></p>
+            <input id="lastname" placeholder="Lastname" type="text">
+            <p style="display:none" class="status-lastname"></p>
+            <input id="email" placeholder="Email" type="text">
+            <p style="display: none;" class="status-email"></p>
+            <div class="password-wrapper">
+                <input id="password" placeholder="Password" type="text">
+                <button class="eye-btn" type="button"><i class="fa-solid fa-eye"></i></button>
+            </div>
+            <p style="display: none;" class="status-password"></p>
+            <p>Don't you have an account? <a href="../pages/login.html">Login.</a></p>
+            <button class="submit-btn" type="submit">Sing Up</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../script/signup.js"></script>
+</body>
+</html>

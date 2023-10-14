@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="dashboard-main-wrapper">
+        <aside class="side-bar">
+            <div class="inner-sidebar">
+                <h2>Dashboard</h2>
+                <div class="user-info-wrapper">
+                    <img src="../images/user.svg" alt="">
+                    <div class="user-info">
+                        <h4 class="usernameInfo"></h4>
+                        <p>Author</p>
+                    </div>
+                </div>
+                <a class="aside-links" aria-current="page" href="./dashboard.html?page=create">Create Post</a>
+                <a class="aside-links" href="./dashboard.html?page=manage">Manage Posts</a>
+            </div>
+            <div>
+                    <button class="sign-out-btn">Sign Out</button>
+            </div>
+        </aside>
+        <main style="width:100%">
+            <div style="display:none;" data-content-name="create">
+                <form aria-current="page"  id="create-post-form"  class="main-create-post-wrapper">
+                <h2 class="page-title">Create New Post</h2>
+                <h3>Post Title</h3>
+                <input id="post-title" type="text" required>
+                <h3>Post Image</h3>
+                <div>
+                    <input id="post-image" type="text" required>
+                    <select id="post-category" required>
+                        <option value="">Select Post Category</option>
+                    </select>
+                </div>
+                <h3>Post Description</h3>
+                <textarea id="post-discription" class="text-aria" required name="" id="" cols="30" rows="10"></textarea>
+                <button id="create-post-button" type="submit"> <span id="loader" class="loader"></span> Create Post</button>
+                </form>
+            </div>
+            <div style="display: none;" data-content-name="manage" class="main-manage-post-wrapper">
+                <h2 class="page-title">Manage Posts</h2>
+                <div class="manage-posts-wrapper" id="manage-posts-wrapper">
+
+                </div>
+                <div class="delete-modal-wrapper">
+                    <form class="delete-modal">
+                        <h2>Delete Post</h2>
+                        <p>Are you sure to delete it?</p>
+                        <button type="submit" class="delete">Delete</button>
+                        <button type="button" class="cancel"><img src="../images/Cancel.png" alt=""></button>
+                    </form>
+                </div>
+            </div>           
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../script/dashboard.js"></script>
+</body>
+</html>
