@@ -7,9 +7,10 @@ const postId = localStorage.getItem('currentPostId');
 
 (async()=>{
     let currentPost = await axios.get(`http://localhost:3000/api/posts/${postId}`)
-    console.log(currentPost.data)
+    let postCategoryName = await axios.get(`http://localhost:3000/api/categories/${currentPost.data.category}`)
+    console.log()
     postTitle.innerHTML = currentPost.data.title
-    postCategory.innerHTML = '#'+currentPost.data.category
+    postCategory.innerHTML = '#' + postCategoryName.data.data.title
     postImage.src = currentPost.data.image
     postText.innerHTML = currentPost.data.description
 })()

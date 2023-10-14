@@ -5,17 +5,25 @@ const createPostForm = document.querySelector('#create-post-form')
 const postTitle = document.querySelector('#post-title')
 const postImage = document.querySelector('#post-image')
 const postCategory = document.querySelector('#post-category')
+const editPostCategory = document.querySelector('#edit-post-category')
 const postDiscription = document.querySelector('#post-discription');
 const userId = localStorage.getItem('userId')
 const creatPostBtn = document.querySelector('#create-post-button')
 const loader = document.querySelector('#loader')
 const managePostWrapper = document.querySelector('#manage-posts-wrapper')
 const deleteModal = document.querySelector('.delete-modal-wrapper')
+const editModal = document.querySelector('.update-modal-wrapper')
 const deleteModalCancelBtn = document.querySelector('.cancel')
+const editModalCancelBtn = document.querySelector('.editCancel')
 const deleteModalDeleteBtn = document.querySelector('.delete')
 const usernameInfo = document.querySelector('.usernameInfo')
 const signOut = document.querySelector('.sign-out-btn')
 const userToken = localStorage.getItem('userToken');
+const updateForm = document.querySelector('.inner-form')
+const editPostTitle = document.querySelector('#editPostTitle')
+const editPostImage = document.querySelector('#editPostImage')
+const editPostDescription = document.querySelector('#editPostDescription')
+const editSubmitBtn = document.querySelector('.edit-post-btn');
 
 (async ()=>{
     let userInfo = await axios.get(`http://localhost:3000/api/users/${userId}`)
@@ -29,6 +37,15 @@ const userToken = localStorage.getItem('userToken');
         option.value = category._id
         option.innerHTML = category.title
         postCategory.appendChild(option)
+    })
+})();
+(async ()=>{
+    let categories = await axios.get('http://localhost:3000/api/categories')
+    categories.data.data.forEach(category => {
+        let option = document.createElement('option')
+        option.value = category._id
+        option.innerHTML = category.title
+        editPostCategory.appendChild(option)
     })
 })();
 
@@ -48,7 +65,6 @@ sidebarMenuItemLinks.forEach(sidebarLink => {
 })
 
 createPostForm.addEventListener('submit',(e)=>{
-    console.log(1)
     e.preventDefault();
     creatPostBtn.setAttribute('disabled','true')
     creatPostBtn.style = 'background-color:#f5c1478d;'
@@ -96,7 +112,7 @@ createPostForm.addEventListener('submit',(e)=>{
                         <p style="width:300px" class="article-description">${element.description.slice(0,100)}..</p>
                     </div>
                     <div style = "padding: 10px;display:flex;gap:40px;margin-top:20px">
-                            <button style="cursor:pointer; padding:5px 40px;font-size:20px;border:none;background-color:#F5C147;font-family:Inter">Edit</button>
+                            <button style="cursor:pointer; padding:5px 40px;font-size:20px;border:none;background-color:#F5C147;font-family:Inter" data-edit-btn="1">Edit</button>
                             <button style="cursor:pointer; padding:5px 30px;font-size:20px;border:none;background-color:red;font-family:Inter" data-delete-btn="1">Delete</button>
                     </div>               
                 `
@@ -114,12 +130,18 @@ managePostWrapper.addEventListener('click',(e)=>{
         localStorage.setItem("removePost",e.target.closest("[data-delete-btn]").parentElement.parentElement.dataset.postId)
         deleteModal.style = 'transform:translateY(0);transition:1s'
     }
+    if(e.target.closest("[data-edit-btn]")){
+        localStorage.setItem("removePost",e.target.closest("[data-edit-btn]").parentElement.parentElement.dataset.postId)
+        editModal.style = 'transform:translateY(0);transition:1s'
+    }
 })
 deleteModalCancelBtn.addEventListener('click',()=>{
     deleteModal.style = 'transform:translateY(-3000px);transition:1s'
 })
+editModalCancelBtn.addEventListener('click',()=>{
+    editModal.style = 'transform:translateY(-3000px);transition:1s'
+})
 deleteModalDeleteBtn.addEventListener('click',()=>{
-    location.replace(location.origin + '/pages/dashboard.html?page=manage')
     (async()=>{
         try{
             let response = await axios.delete(`http://localhost:3000/api/posts/${localStorage.getItem('removePost')}`,{
@@ -138,3 +160,32 @@ signOut.addEventListener('click',()=>{
     location.replace(location.origin + '/index.html')
     localStorage.removeItem('userToken')
 })
+
+updateForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    (async()=>{
+        try{
+            let author = await axios.get(`http://localhost:3000/api/users/${userId}`)
+            const response = await axios.put(`http://localhost:3000/api/posts/${localStorage.getItem('removePost')}`,{
+                "title":editPostTitle.value,
+                "description":editPostDescription.value,
+                "image":editPostImage.value,
+                "author":`${author.data.data.id}`,
+                "category":editPostCategory.value
+                },
+                {
+                headers:{
+                    "Authorization":"Bearer"+' '+userToken,
+                    "Content-Type":"application/json"
+                },
+            })
+            console.log(response)
+            if(response.status == 200){
+               editModal.style = 'transform: translateY(-3000px);transition:1s' 
+               location.reload()  
+            }
+        }catch(error){
+            console.log(error)
+        }
+    })()
+});

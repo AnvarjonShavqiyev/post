@@ -46,7 +46,6 @@
             <div style="display: none;" data-content-name="manage" class="main-manage-post-wrapper">
                 <h2 class="page-title">Manage Posts</h2>
                 <div class="manage-posts-wrapper" id="manage-posts-wrapper">
-
                 </div>
                 <div class="delete-modal-wrapper">
                     <form class="delete-modal">
@@ -56,7 +55,26 @@
                         <button type="button" class="cancel"><img src="../images/Cancel.png" alt=""></button>
                     </form>
                 </div>
-            </div>           
+                <div class="update-modal-wrapper">
+                    <div class="update-modal">
+                        <h3>Update Post</h3>
+                        <button type="button" class="editCancel"><img src="../images/Cancel.png" alt=""></button>
+                        <form class="inner-form">
+                            <p>Post Title</p>
+                            <input type="text" name="" id="editPostTitle" required >
+                            <select name="" id="edit-post-category" required >
+                                <option value="">Select Category</option>
+                            </select>
+                            <p>Post Image</p>
+                            <input type="text" name="" id="editPostImage" required >
+                            <p>Post Description</p>
+                            <textarea  required class="text-aria" name="" id="editPostDescription" cols="30" rows="10"></textarea>
+                            <button type="submit" class="edit-post-btn">Edit Post</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+                      
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -1,3 +1,6 @@
+// body{
+//     overflow: hidden;
+// }
 .dashboard-main-wrapper{
     width: 100vw;
     height: 100vh;
@@ -222,4 +225,74 @@
         top: 15px;
         right: 15px;
     }
+}
+.update-modal-wrapper{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    transform: translateY(-3000px);
+    transition: 0.5s;
+}
+.update-modal{
+    background-color: #F5C147;
+    padding: 34px 55px 46px;
+    width: 500px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .editCancel{
+        border: none;
+        background-color: #00000000;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+    h3{
+        @include font($f-color:#000,$f-size:22px)
+    }
+    .inner-form{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        gap: 10px;
+        width: 100%;
+        p{
+            @include font(#000,20px);
+        }
+        input{
+            width: 100%;
+            height: 44px;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+            text-indent: 15px;
+        }
+        select{
+            width: 100%;
+            height: 44px;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+            text-indent: 15px;
+        }
+        .text-aria{
+            resize: none;
+            border-radius: 15px;
+            border: none;
+            outline: none;
+            padding: 15px;
+        }
+    }
+}
+.edit-post-btn{
+    background-color: #000;
+    @include font();
+    color: #F5C147;
+    border: none;
+    padding: 16px;
+    border-radius: 15px;
+    cursor: pointer;
 }
